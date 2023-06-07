@@ -18,7 +18,7 @@ resource "aws_instance" "project-3" {
     apt-get update
     apt-get install -y terraform
   EOF
-  tags = {
-    Name = var.ec2_instance[count.index]
-  }
+  # tags = {
+  #   Name = var[count.index]
+  # }
 }
