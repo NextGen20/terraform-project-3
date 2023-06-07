@@ -3,12 +3,16 @@ variable "ec2_instance" {
   default = ["Prod", "Test", "Slave", "second-Prod"]
 }
 
+variable "choose_type" {
+  type    = list(string)
+  default = ["t2.micro", "t2.small", "t2.large"]
+}
 
 
 resource "aws_instance" "project-3" {
   count         = length(var.ec2_instance)
   ami           = "ami-0261755bbcb8c4a84"
-  instance_type = var.choose_type[count.index]
+  instance_type = "t2.micro"
   user_data     = <<-EOF
     #!/bin/bash
     apt-get update
