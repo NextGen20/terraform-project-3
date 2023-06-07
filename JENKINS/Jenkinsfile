@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('EC2 Instances') {
             agent {
-                label 'ec2'
+                label 'Aws-ec2-instances'
             }
             steps {
                 sh 'terraform init'
@@ -12,34 +12,34 @@ pipeline {
         }
         stage('S3 Bucket') {
             agent {
-                label 's3'
+                label 'Aws-s3-Bucket'
             }
             steps {
                 sh 'terraform init'
                 sh 'terraform apply -target=module.s3 --auto-approve'
             }
         }
-        stage('Create IAM User') {
+        stage('IAM User') {
             agent {
-                label 'iam'
+                label 'Aws-iam'
             }
             steps {
                 sh 'terraform init'
                 sh 'terraform apply -target=module.iam --auto-approve'
             }
         }
-        stage('Create DynamoDB Table') {
+        stage('DynamoDB Table') {
             agent {
-                label 'dynamodb'
+                label 'Aws-dynamodb'
             }
             steps {
                 sh 'terraform init'
                 sh 'terraform apply -target=module.dynamodb --auto-approve'
             }
         }
-        stage('Handling Github') {
+        stage('Github') {
             agent {
-                label 'github'
+                label 'Aws-github'
             }
             steps {
                 sh 'terraform init'
