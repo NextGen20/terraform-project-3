@@ -5,7 +5,6 @@ resource "aws_instance" "project-3" {
   user_data     = <<-EOF
     #!/bin/bash
     apt-get update
-    apt-get install -y terraform
   EOF
   tags = {
     Name = var.ec2_instance[count.index].name
