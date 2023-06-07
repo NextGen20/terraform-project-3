@@ -1,3 +1,10 @@
+variable "ec2_instance" {
+  type    = list(string)
+  default = ["Prod", "Test", "Slave", "second-Prod"]
+}
+
+
+
 resource "aws_instance" "project-3" {
   count         = length(var.ec2_instance)
   ami           = "ami-0261755bbcb8c4a84"
