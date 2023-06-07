@@ -8,11 +8,9 @@ variable "choose_type" {
   default = ["t2.micro", "t2.small", "t2.large"]
 }
 
-
 resource "aws_instance" "project-3" {
   count         = length(var.ec2_instance)
   ami           = "ami-0261755bbcb8c4a84"
-  # instance_type = "t2.micro"
   instance_type = var.choose_type[0]
   user_data     = <<-EOF
     #!/bin/bash
@@ -20,6 +18,7 @@ resource "aws_instance" "project-3" {
     apt-get install -y terraform
   EOF
   tags = {
-    Name = var[count.index]
+    Name = var.ec2_instance[count.index]
   }
 }
+
