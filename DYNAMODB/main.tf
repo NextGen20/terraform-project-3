@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "example" {
-  name           = "project-3_table"
+  name           = "example_table"
   billing_mode   = "PROVISIONED"
   read_capacity  = 5
   write_capacity = 5
@@ -7,7 +7,16 @@ resource "aws_dynamodb_table" "example" {
   attribute {
     name = "id"
     type = "N"
+  }
 
-    key = true
+  key {
+    name = "id"
+    type = "HASH"
+  }
+
+  provisioned_capacity {
+    read_capacity  = 5
+    write_capacity = 5
   }
 }
+
