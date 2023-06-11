@@ -8,5 +8,9 @@ resource "aws_dynamodb_table" "example" {
     name = "id"
     type = "N"
   }
-
+  
+    key {
+    name = "id"
+    type = "HASH"
+  }
 }
