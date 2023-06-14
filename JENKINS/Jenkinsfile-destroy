@@ -9,7 +9,7 @@ pipeline {
                    steps {   
                 dir('/home/ubuntu/workspace/Terraform-Project3') {
                     sh 'terraform init'
-                    sh 'terraform destroy --auto-approve'
+                    sh 'terraform destroy -target=module.ec2 --auto-approve'
             }
         }
         }
