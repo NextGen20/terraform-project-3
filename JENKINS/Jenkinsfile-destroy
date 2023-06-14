@@ -7,7 +7,7 @@ pipeline {
                 label 'Aws-ec2-instances'
             }
                    steps {   
-                dir('//home/ubuntu/workspace/Terraform-Project3') {
+                dir('/home/ubuntu/workspace/Terraform-Project3') {
                     sh 'terraform init'
                     sh 'terraform destroy --auto-approve'
             }
@@ -19,7 +19,7 @@ pipeline {
                 label 'Aws-s3-Bucket'
             }
               steps {   
-                dir('//home/ubuntu/workspace/Terraform-Project3') {
+                dir('/home/ubuntu/workspace/Terraform-Project3') {
                     sh 'terraform init'
                     sh 'terraform destroy --auto-approve'
             }
@@ -32,7 +32,7 @@ pipeline {
                 label 'Aws-iam'
             }
                steps {   
-                dir('//home/ubuntu/workspace/Terraform-Project3') {
+                dir('/home/ubuntu/workspace/Terraform-Project3') {
                     sh 'terraform init'
                     sh 'terraform destroy --auto-approve'
             }
@@ -44,7 +44,7 @@ pipeline {
                 label 'Aws-dynamodb'
             }
               steps {   
-                dir('//home/ubuntu/workspace/Terraform-Project3') {
+                dir('/home/ubuntu/workspace/Terraform-Project3') {
                     sh 'terraform init'
                     sh 'terraform destroy --auto-approve'
             }
@@ -56,7 +56,7 @@ pipeline {
                 label 'Aws-github'
             }
               steps {   
-                dir('//home/ubuntu/workspace/Terraform-Project3') {
+                dir('/home/ubuntu/workspace/Terraform-Project3') {
                     sh 'terraform init'
                     sh 'terraform destroy --auto-approve'
             }
