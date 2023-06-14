@@ -1,12 +1,12 @@
 resource "aws_dynamodb_table" "book_catalog_table" {
-  name             = "BookCatalog"
+  name             = "Devops"
   billing_mode     = "PROVISIONED"
   read_capacity    = 1
   write_capacity   = 1 
-  hash_key         = "BookName"
+  hash_key         = "Course-Name"
   
   attribute {
-    name = "BookName"
+    name = "Course"
     type = "S"
   }
   
@@ -23,7 +23,7 @@ resource "aws_dynamodb_table" "book_catalog_table" {
     non_key_attributes = ["Genre"]
   }
   tags = {
-    Name        = "book-catalog-table"
+    Name        = "Devops"
     Environment = "production"
   }
 }
