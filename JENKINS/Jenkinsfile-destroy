@@ -1,0 +1,47 @@
+pipeline {
+    agent none
+    stages {
+        stage('EC2 Instances') {
+            agent {
+                label 'Aws-ec2-instances'
+            }
+            steps {
+               
+            }
+        }
+        stage('S3 Bucket') {
+            agent {
+                label 'Aws-s3-Bucket'
+            }
+            steps {
+                
+
+            }
+        }
+        stage('IAM User') {
+            agent {
+                label 'Aws-iam'
+            }
+            steps {
+               
+            }
+        }
+        stage('DynamoDB Table') {
+            agent {
+                label 'Aws-dynamodb'
+            }
+            steps {
+              
+            }
+        }
+        stage('Github') {
+            agent {
+                label 'Aws-github'
+            }
+            steps {
+               
+            }
+        }
+    }
+    
+}
