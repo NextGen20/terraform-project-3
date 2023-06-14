@@ -6,9 +6,10 @@ pipeline {
             agent {
                 label 'Aws-ec2-instances'
             }
-            steps {
-                sh 'terraform init'
-                sh 'terraform destroy -target=module.ec2 --auto-approve'
+                   steps {   
+                dir('//home/ubuntu/workspace/Terraform-Project3') {
+                    sh 'terraform init'
+                    sh 'terraform destroy --auto-approve'
             }
         }
         
@@ -16,41 +17,49 @@ pipeline {
             agent {
                 label 'Aws-s3-Bucket'
             }
-            steps {
-                sh 'terraform init'
-                sh 'terraform destroy -target=module.s3 --auto-approve'
+              steps {   
+                dir('//home/ubuntu/workspace/Terraform-Project3') {
+                    sh 'terraform init'
+                    sh 'terraform destroy --auto-approve'
             }
         }
+        }
         
-        // Repeat the same pattern for the remaining stages
+        /
         stage('Destroy IAM User') {
             agent {
                 label 'Aws-iam'
             }
-            steps {
-                sh 'terraform init'
-                sh 'terraform destroy -target=module.iam --auto-approve'
+               steps {   
+                dir('//home/ubuntu/workspace/Terraform-Project3') {
+                    sh 'terraform init'
+                    sh 'terraform destroy --auto-approve'
             }
+        }
         }
         
         stage('Destroy DynamoDB Table') {
             agent {
                 label 'Aws-dynamodb'
             }
-            steps {
-                sh 'terraform init'
-                sh 'terraform destroy -target=module.dynamodb --auto-approve'
+              steps {   
+                dir('//home/ubuntu/workspace/Terraform-Project3') {
+                    sh 'terraform init'
+                    sh 'terraform destroy --auto-approve'
             }
+        }
         }
         
         stage('Destroy Github') {
             agent {
                 label 'Aws-github'
             }
-            steps {
-                sh 'terraform init'
-                sh 'terraform destroy -target=module.github --auto-approve'
+              steps {   
+                dir('//home/ubuntu/workspace/Terraform-Project3') {
+                    sh 'terraform init'
+                    sh 'terraform destroy --auto-approve'
             }
+        }
         }
     }
 }
