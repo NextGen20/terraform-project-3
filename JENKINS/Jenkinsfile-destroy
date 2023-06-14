@@ -42,32 +42,34 @@ pipeline {
             }
         }
         }
+    
+
+        
+        stage('Destroy DynamoDB Table') {
+            agent {
+                label 'Aws-dynamodb'
+            }
+              steps {   
+                dir('/home/ubuntu/workspace/Terraform-Project3') {
+                    sh 'terraform init'
+                    sh 'terraform destroy -target=module.dynamodb --auto-approve'
+            }
+        }
+        }
+    
+
+        
+        stage('Destroy Github') {
+            agent {
+                label 'Aws-github'
+            }
+              steps {   
+                dir('/home/ubuntu/workspace/Terraform-Project3') {
+                    sh 'terraform init'
+                    sh 'terraform destroy -target=module.github --auto-approve'
+            }
+        }
+        }
     }
 }
-        
-//         stage('Destroy DynamoDB Table') {
-//             agent {
-//                 label 'Aws-dynamodb'
-//             }
-//               steps {   
-//                 dir('/home/ubuntu/workspace/Terraform-Project3') {
-//                     sh 'terraform init'
-//                     sh 'terraform destroy -target=module.dynamodb --auto-approve'
-//             }
-//         }
-//         }
-        
-//         stage('Destroy Github') {
-//             agent {
-//                 label 'Aws-github'
-//             }
-//               steps {   
-//                 dir('/home/ubuntu/workspace/Terraform-Project3') {
-//                     sh 'terraform init'
-//                     sh 'terraform destroy -target=module.github --auto-approve'
-//             }
-//         }
-//         }
     
-// }
-// }
