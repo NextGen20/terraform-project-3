@@ -12,6 +12,7 @@ pipeline {
                     sh 'terraform destroy --auto-approve'
             }
         }
+        }
         
         stage('Destroy S3 Bucket') {
             agent {
@@ -61,6 +62,6 @@ pipeline {
             }
         }
         }
-    }
+    
 }
 }
