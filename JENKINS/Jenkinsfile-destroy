@@ -27,21 +27,23 @@ pipeline {
             }
         }
         }
-    }    
-}
+       
+
         
-//         /
-//         stage('Destroy IAM User') {
-//             agent {
-//                 label 'Aws-iam'
-//             }
-//                steps {   
-//                 dir('/home/ubuntu/workspace/Terraform-Project3') {
-//                     sh 'terraform init'
-//                     sh 'terraform destroy -target=module.iam --auto-approve'
-//             }
-//         }
-//         }
+        
+        stage('Destroy IAM User') {
+            agent {
+                label 'Aws-iam'
+            }
+               steps {   
+                dir('/home/ubuntu/workspace/Terraform-Project3') {
+                    sh 'terraform init'
+                    sh 'terraform destroy -target=module.iam --auto-approve'
+            }
+        }
+        }
+    }
+}
         
 //         stage('Destroy DynamoDB Table') {
 //             agent {
