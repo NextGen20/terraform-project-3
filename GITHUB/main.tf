@@ -8,7 +8,8 @@ terraform {
 }
 
 provider "github" {
-  token        = "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"
+
+  token = "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"
   # organization = "Bachar and his sons"
 }
 

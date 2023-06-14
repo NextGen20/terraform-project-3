@@ -1,47 +1,56 @@
 pipeline {
-    agent none
+    agent any
+    
     stages {
-        stage('EC2 Instances') {
+        stage('Destroy EC2 Instances') {
             agent {
                 label 'Aws-ec2-instances'
             }
             steps {
-               
+                sh 'terraform init'
+                sh 'terraform destroy -target=module.ec2 --auto-approve'
             }
         }
-        stage('S3 Bucket') {
+        
+        stage('Destroy S3 Bucket') {
             agent {
                 label 'Aws-s3-Bucket'
             }
             steps {
-                
-
+                sh 'terraform init'
+                sh 'terraform destroy -target=module.s3 --auto-approve'
             }
         }
-        stage('IAM User') {
+        
+        // Repeat the same pattern for the remaining stages
+        stage('Destroy IAM User') {
             agent {
                 label 'Aws-iam'
             }
             steps {
-               
+                sh 'terraform init'
+                sh 'terraform destroy -target=module.iam --auto-approve'
             }
         }
-        stage('DynamoDB Table') {
+        
+        stage('Destroy DynamoDB Table') {
             agent {
                 label 'Aws-dynamodb'
             }
             steps {
-              
+                sh 'terraform init'
+                sh 'terraform destroy -target=module.dynamodb --auto-approve'
             }
         }
-        stage('Github') {
+        
+        stage('Destroy Github') {
             agent {
                 label 'Aws-github'
             }
             steps {
-               
+                sh 'terraform init'
+                sh 'terraform destroy -target=module.github --auto-approve'
             }
         }
     }
-    
 }
