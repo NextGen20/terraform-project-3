@@ -13,20 +13,22 @@ pipeline {
             }
         }
         }
-    }
-}
+    
+
         
-//         stage('Destroy S3 Bucket') {
-//             agent {
-//                 label 'Aws-s3-Bucket'
-//             }
-//               steps {   
-//                 dir('/home/ubuntu/workspace/Terraform-Project3') {
-//                     sh 'terraform init'
-//                     sh 'terraform destroy --auto-approve'
-//             }
-//         }
-//         }
+        stage('Destroy S3 Bucket') {
+            agent {
+                label 'Aws-s3-Bucket'
+            }
+              steps {   
+                dir('/home/ubuntu/workspace/Terraform-Project3') {
+                    sh 'terraform init'
+                    sh 'terraform destroy -target=module.s3 --auto-approve'
+            }
+        }
+        }
+    }    
+}
         
 //         /
 //         stage('Destroy IAM User') {
@@ -36,7 +38,7 @@ pipeline {
 //                steps {   
 //                 dir('/home/ubuntu/workspace/Terraform-Project3') {
 //                     sh 'terraform init'
-//                     sh 'terraform destroy --auto-approve'
+//                     sh 'terraform destroy -target=module.iam --auto-approve'
 //             }
 //         }
 //         }
@@ -48,7 +50,7 @@ pipeline {
 //               steps {   
 //                 dir('/home/ubuntu/workspace/Terraform-Project3') {
 //                     sh 'terraform init'
-//                     sh 'terraform destroy --auto-approve'
+//                     sh 'terraform destroy -target=module.dynamodb --auto-approve'
 //             }
 //         }
 //         }
@@ -60,7 +62,7 @@ pipeline {
 //               steps {   
 //                 dir('/home/ubuntu/workspace/Terraform-Project3') {
 //                     sh 'terraform init'
-//                     sh 'terraform destroy --auto-approve'
+//                     sh 'terraform destroy -target=module.github --auto-approve'
 //             }
 //         }
 //         }
