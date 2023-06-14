@@ -1,56 +1,52 @@
 pipeline {
-    agent any
-    
+    agent none
     stages {
-        stage('Destroy EC2 Instances') {
+        stage('EC2 Instances') {
             agent {
                 label 'Aws-ec2-instances'
             }
             steps {
                 sh 'terraform init'
-                sh 'terraform destroy -target=module.ec2 --auto-approve'
+                sh 'terraform apply -target=module.ec2 --auto-approve'
             }
         }
-        
-        stage('Destroy S3 Bucket') {
+        stage('S3 Bucket') {
             agent {
                 label 'Aws-s3-Bucket'
             }
             steps {
                 sh 'terraform init'
-                sh 'terraform destroy -target=module.s3 --auto-approve'
+                sh 'terraform apply -target=module.s3 --auto-approve'
+
             }
         }
-        
-        // Repeat the same pattern for the remaining stages
-        stage('Destroy IAM User') {
+        stage('IAM User') {
             agent {
                 label 'Aws-iam'
             }
             steps {
                 sh 'terraform init'
-                sh 'terraform destroy -target=module.iam --auto-approve'
+                sh 'terraform apply -target=module.iam --auto-approve'
             }
         }
-        
-        stage('Destroy DynamoDB Table') {
+        stage('DynamoDB Table') {
             agent {
                 label 'Aws-dynamodb'
             }
             steps {
                 sh 'terraform init'
-                sh 'terraform destroy -target=module.dynamodb --auto-approve'
+                sh 'terraform apply -target=module.dynamodb --auto-approve'
             }
         }
-        
-        stage('Destroy Github') {
+        stage('Github') {
             agent {
                 label 'Aws-github'
             }
             steps {
                 sh 'terraform init'
-                sh 'terraform destroy -target=module.github --auto-approve'
+                sh 'terraform apply -target=module.github --auto-approve'
             }
         }
     }
+    
 }
